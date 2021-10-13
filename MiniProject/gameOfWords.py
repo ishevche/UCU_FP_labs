@@ -29,6 +29,13 @@ game_data = [
                "dare", "dear", "hard", "hare",
                "head", "hear", "herd", "read"], [])
 ]
+start_message = f"""Welcome to the game of words!
+This game contains {len(game_data)} levels.
+At each level, you will receive a keyword.
+The goal is to form as many as possible other words
+out of the keyword's characters.
+You have to find at least 70% of words in the level,
+before you can move to the next one"""
 help_string = """
 There are some commands you can use:
 - exit         -> you will exit the game;
@@ -38,22 +45,28 @@ There are some commands you can use:
 - <num>        -> the same as \"level #<num>\"
 Every command should start with ->, ! or /\n
 Some examples:
--> level #1
+-> level #5
 /exit
 !next"""
-start_message = f"""Welcome to the game of words!
-This game contains {len(game_data)} levels.
-At each level, you will receive a keyword.
-The goal is to form as many as possible other words
-out of the keyword's characters.
-You have to find summarily at least 80% of words for levels from 1 to n,
-before you can move to the level #n"""
 has_i_asked_to_move_forward = False
 cur_level = 0
 exit_flag = False
 
 
 def is_word_good(word: str, keyword: str) -> bool:
+    """
+    Checks if word is a valid permutation of keyword's characters.
+
+    :param word: str
+        string to check
+    :param keyword: str
+        string consist of characters that can be used in <word>
+    :return:
+        False if word's length less than 3 symbols
+        False if word is equal to keyword
+        False if word can not be received by rearranging some letter from keyword
+        True otherwise
+    """
     if len(word) < 3:
         print("Haven't I said that words must consist of at "
               "least three letters?\n"
@@ -75,17 +88,26 @@ def is_word_good(word: str, keyword: str) -> bool:
     return True
 
 
-def is_enough_for_level(level: int) -> bool:
-    if level >= len(game_data):
+def is_enough_for_level(num: int) -> bool:
+    """
+    Checks if enough words are found to go to the level# <num>
+
+    :param num: int
+        Number of level to go
+    :return:
+        True if at least 70% of words in level #<num> - 1 are found
+        False otherwise
+    """
+    if num >= len(game_data) or num < 0:
         return False
+    if num == 0:
+        return True
 
-    general_amount_of_words = 0
-    found_words = 0
-    for i in range(level):
-        general_amount_of_words += len(game_data[i][1]) + len(game_data[i][2])
-        found_words += len(game_data[i][2])
+    general_amount_of_words = len(game_data[num - 1][1]) + \
+                              len(game_data[num - 1][2])
+    found_words = len(game_data[num - 1][2])
 
-    return general_amount_of_words * 0.8 <= found_words
+    return general_amount_of_words * 0.7 <= found_words
 
 
 def is_command(user_input: str) -> bool:
@@ -95,6 +117,13 @@ def is_command(user_input: str) -> bool:
 
 
 def handle_command(cmd: str):
+    """
+    Executes command
+
+    :param cmd: str
+        Command string without leading / (! or ->) symbol
+    :return: None
+    """
     global exit_flag, cur_level, has_i_asked_to_move_forward
     if cmd == "exit":
         print("Thanks for playing. See you")
@@ -108,8 +137,8 @@ def handle_command(cmd: str):
             cur_level += 1
             has_i_asked_to_move_forward = False
         else:
-            print("You have to find summarily at least 80% of words for "
-                  "levels up to current, before you can move to the next")
+            print("You have to find summarily at least 70% of words in "
+                  "the current level, before you can move to the next")
 
     elif cmd[0:7] == "level #":
         try:
@@ -128,22 +157,35 @@ def handle_command(cmd: str):
 
 
 def go_to_level(num: int):
+    """
+    Changes current level to the level# <num> if it is allowed
+
+    :param num: int
+        A number of level to move to
+    :return: None
+    """
     global cur_level, has_i_asked_to_move_forward
 
     if num - 1 != cur_level:
-        if num > len(game_data):
+        if num > len(game_data) or num <= 0:
             print("It must be a number less or equal "
-                  f"{len(game_data)}")
+                  f"{len(game_data)} and grater or equal 1")
         elif is_enough_for_level(num - 1):
             cur_level = num - 1
             has_i_asked_to_move_forward = False
         else:
-            print("You have to find summarily at least 80% of words for "
-                  f"levels up to {num - 1}, "
+            print("You have to find summarily at least 70% of words in "
+                  f"the level #{num - 1}, "
                   f"before you can move to the level #{num}")
 
 
-def move_to_non_complete_level():
+def move_to_uncompleted_level():
+    """
+    Changes current level on the first unstarted level
+    If not possible, on the first uncompleted level
+
+    :return: None
+    """
     global exit_flag, cur_level, has_i_asked_to_move_forward
 
     not_started_level = cur_level + 1
@@ -172,8 +214,12 @@ def move_to_non_complete_level():
 
 
 def play_level():
+    """
+    Presides player's turn
+
+    :return: None
+    """
     level_data = game_data[cur_level]
-    print_level_info()
     user_input = input(">>> ").lower().strip()
 
     if is_command(user_input):
@@ -193,6 +239,13 @@ def play_level():
 
 
 def new_word_found(word: str):
+    """
+    Handles new valid word finding
+
+    :param word: str
+        Word that was found
+    :return: None
+    """
     global cur_level, has_i_asked_to_move_forward
 
     level_data = game_data[cur_level]
@@ -203,14 +256,14 @@ def new_word_found(word: str):
     if len(level_data[1]) == 0:
         print("Congrats!!! You have found all the "
               "words in this level")
-        move_to_non_complete_level()
+        move_to_uncompleted_level()
 
     elif cur_level < len(game_data) - 1 and \
             is_enough_for_level(cur_level + 1) and \
             not has_i_asked_to_move_forward:
         has_i_asked_to_move_forward = True
         print("Congrats!!! You can now move to the next level\n"
-              "Do you want to move? [Y|n]")
+              "Do you want to move? [YES|no]")
         answer = input(">>> ").lower().strip()
         if answer == "yes" or answer == "y" or answer == "":
             cur_level += 1
@@ -218,6 +271,11 @@ def new_word_found(word: str):
 
 
 def print_level_info():
+    """
+    Prints current game state
+
+    :return: None
+    """
     level_data = game_data[cur_level]
     total_words_amount = len(level_data[1]) + len(level_data[2])
     found_words_amount = len(level_data[2])
@@ -235,4 +293,5 @@ if __name__ == '__main__':
     print(start_message)
     print(help_string)
     while not exit_flag:
+        print_level_info()
         play_level()
