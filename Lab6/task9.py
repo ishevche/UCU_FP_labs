@@ -41,7 +41,7 @@ def get_words(file, letters):
                 continue
             word_part = word_part.lstrip('/')
             if word_part.startswith('n') and not \
-                    word_part.startswith('no'):
+                    word_part.startswith('noni'):
                 answer += [(word, 'noun')]
             elif word_part.startswith('v'):
                 answer += [(word, 'verb')]
