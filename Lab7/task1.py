@@ -113,10 +113,21 @@ def del_node(graph, node):
     return graph
 
 
-# def convert_to_dot(graph):
-#     """
-#     (dict) -> (None)
-#
-#     Save the graph to a file in a DOT format.
-#     """
-#     pass
+def convert_to_dot(graph):
+    """
+    (dict) -> (None)
+
+    Save the graph to a file in a DOT format.
+    # >>> convert_to_dot({1: [2, 5], 2: [1, 4], 3: [4], 4: [2, 3], 5: [1]})
+    """
+    with open('graph.dot', 'w') as output:
+        output.write("graph {\n")
+        for start, ends in graph.items():
+            output.write(f"\t{start} -- ")
+            output.write('{ ')
+            for end in ends:
+                if end < start:
+                    continue
+                output.write(f'{end} ')
+            output.write('};\n')
+        output.write('}\n')
