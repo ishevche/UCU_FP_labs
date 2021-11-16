@@ -56,7 +56,8 @@ def print_file(new_path: str, file_regex: re, regex: re,
     try:
         with open(new_path, 'r') as file:
             content = file.read().split('\n')
-            print_matched_string(new_path, file_regex, Fore.BLUE)
+            print_matched_string(os.path.basename(new_path),
+                                 file_regex, Fore.BLUE)
             if count:
                 content = list(filter(lambda x: regex.search(x) is not None,
                                       content))
@@ -70,8 +71,8 @@ def print_file(new_path: str, file_regex: re, regex: re,
                               f'{idx + 1}'
                               f'{Style.RESET_ALL}: ', end='')
                     print_matched_string(line, regex, Fore.RED)
-    except OSError:
-        pass
+    except OSError as e:
+        print(e)
 
 
 def print_matched_string(string, regex, color):
@@ -81,7 +82,6 @@ def print_matched_string(string, regex, color):
     :param regex: regex that matched
     :param color: color to print with
     :return: None
-    >>> print_matched_string("./.idea/.gitignore", re.compile('.*'), Fore.BLUE)
     """
     match_object: re.Match = regex.search(string)
     if match_object is not None:
@@ -117,8 +117,8 @@ def print_matches_in_dir(path: str, file_regex: re, regex: re,
                 print_matches_in_dir(new_path, file_regex, regex,
                                      show_lines, count)
 
-    except OSError:
-        pass
+    except OSError as e:
+        print(e)
 
 
 # def print_sub(path: str, regex: re):
