@@ -60,9 +60,8 @@ def print_file(new_path: str, file_regex: re, regex: re,
             if count:
                 content = list(filter(lambda x: regex.search(x) is not None,
                                       content))
-                print(f': {len(content)}')
+                print(f' {len(content)}')
             else:
-                print()
                 for idx, line in enumerate(content):
                     if regex.search(line) is None:
                         continue
@@ -71,7 +70,6 @@ def print_file(new_path: str, file_regex: re, regex: re,
                               f'{idx + 1}'
                               f'{Style.RESET_ALL}: ', end='')
                     print_matched_string(line, regex, Fore.RED)
-                    print()
     except OSError:
         pass
 
@@ -94,7 +92,7 @@ def print_matched_string(string, regex, color):
                   f'{Style.RESET_ALL}', end='')
             string = string[match_object.span()[1]:]
             match_object = regex.search(string)
-        print(string, end='')
+        print(string)
 
 
 def print_matches_in_dir(path: str, file_regex: re, regex: re,
