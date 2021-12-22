@@ -1,4 +1,4 @@
-#!/usr/bin/python3.9
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
 Module for visualization of filler game
@@ -10,8 +10,8 @@ from dumpparser import parse
 FONT = ImageFont.FreeTypeFont("fonts/FreeMonoBold.ttf", 20)
 INFO_WIDTH = 300
 BACKGROUND_COLOR = (54, 54, 54)
-PLAYER1_COLOR = (201, 58, 45)
-PLAYER2_COLOR = (39, 141, 196)
+PLAYER1_COLOR = (120, 27, 196)
+PLAYER2_COLOR = (111, 179, 159)
 
 
 def read_dump_file(path: str) -> str:
