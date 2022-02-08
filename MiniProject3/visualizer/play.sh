@@ -1,2 +1,2 @@
-../filler_vm -f ../map02 -p2 ../shevchenko_filler.py -p1 ../mytnyk.py > res.txt
+../filler_vm -f ../map01 -p1 ../Bots/Shevchenko.py -p2 ../Bots/Mytnyk.py > res.txt
 python visualizer.py -file res.txt -image res.gif

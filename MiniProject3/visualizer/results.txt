@@ -1,0 +1,31 @@
+Hreben.. (3) ┓                                                                                                                          
+             ┡Hreben.. (3) ┓                                                                                              ┌Hotski.. (2) 
+Kharab.. (2) ┘             ┃                                                                                              │             
+                           ┡Hreben.. (2) ┐                                                                  ┌Mokryt.. (0) ┪             
+Korch    (3) ┓             │             │                                                                  │             ┃             
+             ┡Korch    (2) ┘             │                                                                  │             ┗Mokryt.. (3) 
+Mykhas.. (0) ┘                           │                                                                  │                           
+                                         ┢Klym     (0) ┐                                      ┏Oleksiuk (3) ┪                           
+Klym     (3) ┓                           ┃             │                                      ┃             ┃                           
+             ┡Klym     (3) ┓             ┃             │                                      ┃             ┃             ┌Krasni.. (0) 
+Muzychuk (0) ┘             ┃             ┃             │                                      ┃             ┃             │             
+                           ┡Klym     (3) ┛             │                                      ┃             ┗Oleksiuk (3) ┪             
+                           │                           │              ╔════════╗              ┃                           ┃             
+              Seryvko  (0) ┘                           │             ┌╢Oleksiuk╟┓             ┃                           ┗Oleksiuk (3) 
+                                                       │             │╚════════╝┃             ┃                                         
+                                                       ┢Shchur   (0) ┘          ┗Oleksiuk (3) ┩                                         
+                                                       ┃                                      │                                         
+              Moskov.. (0) ┐                           ┃                                      │                           ┌Peleh    (0) 
+                           │                           ┃                                      │                           │             
+                           ┢Shevch.. (1) ┐             ┃                                      │             ┏Mytnyk   (3) ┪             
+                           ┃             │             ┃                                      │             ┃             ┃             
+              Shevch.. (3) ┛             │             ┃                                      │             ┃             ┗Mytnyk   (3) 
+                                         │             ┃                                      │             ┃                           
+                                         ┢Shchur   (3) ┛                                      └Mytnyk   (2) ┩                           
+                                         ┃                                                                  │                           
+              Bernikov (0) ┐             ┃                                                                  │             ┌Shulyar  (0) 
+                           │             ┃                                                                  │             │             
+                           ┢Shchur   (3) ┛                                                                  └Zhurba   (0) ┪             
+                           ┃                                                                                              ┃             
+              Shchur   (3) ┛                                                                                              ┗Zhurba   (3) 
+                                                                                                                                        
