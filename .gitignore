@@ -1,0 +1,5 @@
+venv/
+__pycache__/
+.idea/
+fp2022-lab1-task2-caching/
+twitter_site/
