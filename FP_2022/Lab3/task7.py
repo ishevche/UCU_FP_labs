@@ -1,3 +1,6 @@
+"""
+logistic_system.py
+"""
 import random
 
 
@@ -16,6 +19,8 @@ class Item:
     def __str__(self):
         """
         Pretty representation
+        >>> str(Item('book',110))
+        'An item of book for 110 UAH'
         """
         return f"An item of {self.name} for {self.price} UAH"
 
@@ -59,10 +64,13 @@ class Order:
         self.user_name: str = user_name
         self.location: Location = Location(city, postoffice)
         self.items: list = items
-        self.vehicle: Vehicle = None
+        self.vehicle: Vehicle | None = None
         print(f'Your order number is {self.orderId}.')
 
     def calculateAmount(self):
+        """
+        Counts total price of the order
+        """
         total_price = 0.0
         for item in self.items:
             total_price += item.price
@@ -115,4 +123,3 @@ class LogisticSystem:
                 print(order)
                 return
         print('No such order.')
-

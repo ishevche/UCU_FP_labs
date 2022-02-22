@@ -16,6 +16,10 @@ class Point:
     def distance(self, other):
         """
         Calculates distance between two points
+        >>> a = Point(0 ,0)
+        >>> b = Point(1, 0)
+        >>> a.distance(b)
+        1.0
         """
         return math.sqrt((self.x_coord - other.x_coord) ** 2 +
                          (self.y_coord - other.y_coord) ** 2)
@@ -54,6 +58,9 @@ class Triangle:
     def area(self):
         """
         Calculates area of the triangle
+        >>> triangle = Triangle(Point(1,1), Point(3,1), Point(2,3))
+        >>> triangle.area()
+        2.0
         """
         side1 = self.point1.distance(self.point2)
         side2 = self.point2.distance(self.point3)

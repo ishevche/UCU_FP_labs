@@ -14,6 +14,11 @@ class Markets:
     def __str__(self):
         """
         Pretty representation
+        >>> market_family_food = Markets('Family Food', 80, ['Bread and Bakery'\
+        , 'Dairy', 'Beverages'])
+        >>> print(market_family_food)
+        Supermarket Family Food has an area of 80 m2 and has the following categories: \
+Bread and Bakery, Dairy, Beverages.
         """
         return f"Supermarket {self.name} has an area of {self.area} " \
                f"m2 and has the following categories: " \

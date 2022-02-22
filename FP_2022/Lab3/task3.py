@@ -1,3 +1,8 @@
+"""
+classroom.py
+"""
+
+
 class Classroom:
     """
     Class represents Classroom
@@ -14,6 +19,10 @@ class Classroom:
     def __str__(self):
         """
         Pretty representation
+        >>> classroom_016 = Classroom('016', 80, ['PC', 'projector', 'mic'])
+        >>> print(classroom_016)
+        Classroom 016 has a capacity of 80 persons and has the following \
+equipment: PC, projector, mic.
         """
         return f"Classroom {self.number} has a capacity of {self.capacity} " \
                f"persons and has the following equipment: " \
