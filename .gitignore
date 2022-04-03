@@ -4,3 +4,4 @@ __pycache__/
 fp2022-lab1-task2-caching/
 twitter_site/
 .gitignore
+.coverage
