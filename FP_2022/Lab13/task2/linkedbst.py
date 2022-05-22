@@ -354,6 +354,7 @@ class LinkedBST(AbstractCollection):
             return ans
 
         words_list = read_dict()
+        bst_sorted = LinkedBST(words_list)
         bst_random = LinkedBST(random.shuffle(words_list.copy()))
         bst_balanced = copy.deepcopy(bst_random)
         bst_balanced.rebalance()
@@ -366,6 +367,11 @@ class LinkedBST(AbstractCollection):
 
         time_start = time.perf_counter()
         for word_to_find in words_to_find:
+            word_to_find in bst_sorted
+        time_sorted = time.perf_counter() - time_start
+
+        time_start = time.perf_counter()
+        for word_to_find in words_to_find:
             word_to_find in bst_random
         time_random = time.perf_counter() - time_start
 
@@ -374,12 +380,17 @@ class LinkedBST(AbstractCollection):
             word_to_find in bst_balanced
         time_balanced = time.perf_counter() - time_start
 
-        print(f'┏━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓')
-        print(f'┃ Amount ┃ Sorted list ┃ Random tree ┃ Balanced tree ┃')
-        print(f'┣━━━━━━━━╋━━━━━━━━━━━━━╋━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━┫')
-        print(f'┃  10000 ┃ {time_list.__round__(9)} ┃ '
+        print(f'┏━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━'
+              f'┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓')
+        print(f'┃ Amount ┃ Sorted list ┃ Sorted tree '
+              f'┃ Random tree ┃ Balanced tree ┃')
+        print(f'┣━━━━━━━━╋━━━━━━━━━━━━━╋━━━━━━━━━━━━━'
+              f'╋━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━┫')
+        print(f'┃  10000 ┃ '
+              f'{time_list.__round__(9)} ┃ {time_sorted.__round__(9)} ┃ '
               f'{time_random.__round__(9)} ┃ {time_balanced.__round__(11)} ┃')
-        print(f'┗━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┛')
+        print(f'┗━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━━'
+              f'┻━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┛')
 
         return time_list, time_random, time_balanced
 
